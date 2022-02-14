@@ -1,19 +1,31 @@
 from bs4 import BeautifulSoup
 import requests
 
+# Конфиг ТГ бота
 chatId = '1046931046'
 tokenBot = '5273819559:AAF9caGBe-Cl5sqvgZH7D18vIx0T7RW16gk'
 
+# Категория для парсинга
+urlKwork = 'https://kwork.ru/projects?c=41'
+
+# Лист кворков
 jobsList = []
+
+# первые кворки
 first = True
 
-def send_msg(text, parse_mode='HTML'):
+# Отправить сообщение в ТГ
+def send_msg(text, parse_mode='HTML') -> None:
     requests.post(f"https://api.telegram.org/bot{tokenBot}/sendMessage?chat_id={chatId}&text={text}&parse_mode={parse_mode}&disable_web_page_preview=true")
 
+# Основной цикл
 while True:
-    kwork = requests.get('https://kwork.ru/projects?c=41')
+    kwork = requests.get(urlKwork)
+
     bsUse = BeautifulSoup(kwork.text, 'html.parser')
     blocks = bsUse.find_all('div', class_='card')
+
+    # Парсинг кворка из биржи
     for block in blocks:
         infoBlock = BeautifulSoup(str(block), 'html.parser')
 
@@ -35,3 +47,5 @@ while True:
     first = False
 
         
+
+# /coded by @loveappless
