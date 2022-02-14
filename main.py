@@ -2,8 +2,8 @@ from bs4 import BeautifulSoup
 import requests
 
 # Конфиг ТГ бота
-chatId = '1046931046'
-tokenBot = '5273819559:AAF9caGBe-Cl5sqvgZH7D18vIx0T7RW16gk'
+chatId = ''
+tokenBot = ''
 
 # Категория для парсинга
 urlKwork = 'https://kwork.ru/projects?c=41'
